@@ -42,9 +42,14 @@ public class RestaurantRessource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Restaurant restaurant){
-        restaurant.persist(restaurant);
-        if(restaurant.isPersistent()){
-            return Response.created(URI.create("/restaurants"+restaurant.id)).build();
+        List<Restaurant> doublon = Restaurant.list("SELECT restaurant FROM Restaurant restaurant WHERE restaurant.nom = ?1 AND restaurant.adresse = ?2"
+                ,restaurant.nom, restaurant.adresse);
+        System.out.println(doublon);
+        if(doublon.size() == 0){
+            restaurant.persist(restaurant);
+            if(restaurant.isPersistent()){
+                return Response.created(URI.create("/restaurants"+restaurant.id)).build();
+            }
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
     }

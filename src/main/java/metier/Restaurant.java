@@ -8,15 +8,15 @@ import javax.persistence.Entity;
 @Entity
 public class Restaurant extends PanacheEntity {
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = false)
     public String nom;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = false)
     public String type_cuisine;
-/*
-    @Column(length = 255)
+
+    @Column(length = 255, nullable = false)
     public String adresse;
 
- */
+
 
 }
