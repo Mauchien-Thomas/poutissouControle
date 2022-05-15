@@ -1,0 +1,30 @@
+
+{#include base}
+    {#body}
+<h1>Annuaires de restaurants</h1>
+
+<idv>
+    {#if restaurants.size == 0}
+        il n'y a pas de restaurant
+    {/if}
+</idv>
+<table id="liste_restaurant" class="table table-condensend">
+    <thead>
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">type de cuisine</th>
+    </tr>
+    </thead>
+    {#for restaurant in restaurants}
+    <tbody>
+        <tr>
+            <td>{restaurant.nom}</td>
+            <td>{restaurant.adresse}</td>
+            <td>{restaurant.type_cuisine}</td>
+        </tr>
+    </tbody>
+    {/for}
+</table>
+{/body}
+{/include}

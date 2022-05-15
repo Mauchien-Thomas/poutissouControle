@@ -1,56 +1,36 @@
 package ressource;
 
+
 import metier.Restaurant;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Singleton;
 import javax.transaction.Transactional;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.util.List;
+import javax.validation.Valid;
 
-@Path("/restaurants")
+import static javax.transaction.Transactional.TxType.REQUIRED;
+@ApplicationScoped
+@Transactional(REQUIRED)
 public class RestaurantRessource {
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {
-        List<Restaurant> restaurant = Restaurant.listAll();
-        return Response.ok(restaurant).build();
+
+
+    public Restaurant addRestaurant(@Valid Restaurant restaurant) {
+        restaurant.persist();
+        return restaurant;
     }
 
-    @GET
-    @Path("nom/{nom}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getByNom(@PathParam("nom") String nom){
-       List<Restaurant> restaurant = Restaurant.list("SELECT restaurant FROM Restaurant restaurant WHERE restaurant.nom = ?1 ORDER BY nom "+
-               "DESC", nom);
-       return Response.ok(restaurant).build();
+   /*
+    public void updateRestaurant(Restaurant restaurant) {
+        entityManager.merge(restaurant);
     }
 
-    @GET
-    @Path("type/{type_cuisine}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getByTypeCuisine(@PathParam("type_cuisine") String type_cuisine){
-        List<Restaurant> restaurant = Restaurant.list("SELECT restaurant FROM Restaurant restaurant WHERE restaurant.type_cuisine = ?1 ORDER BY type_cuisine "+
-                "DESC", type_cuisine);
-        return Response.ok(restaurant).build();
+
+    public void deleteRestaurant(Long id) {
+        Restaurant restaurant = getRestaurant(id);
+        entityManager.remove(restaurant);
     }
 
-    @POST
-    @Transactional
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(Restaurant restaurant){
-        List<Restaurant> doublon = Restaurant.list("SELECT restaurant FROM Restaurant restaurant WHERE restaurant.nom = ?1 AND restaurant.adresse = ?2"
-                ,restaurant.nom, restaurant.adresse);
-        System.out.println(doublon);
-        if(doublon.size() == 0){
-            restaurant.persist(restaurant);
-            if(restaurant.isPersistent()){
-                return Response.created(URI.create("/restaurants"+restaurant.id)).build();
-            }
-        }
-        return Response.status(Response.Status.BAD_REQUEST).build();
-    }
+    */
+
 }

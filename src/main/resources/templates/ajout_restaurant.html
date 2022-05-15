@@ -1,0 +1,25 @@
+{#include base}
+{#body}
+<div class="container">
+    <form id="ajout" method="POST" action="../restaurants/creation/envoi">
+        <div class="form-group">
+            <div class="col-xs-5">
+                <label for="nom" class="mx-sm-3">Nom du restaurant :</label>
+                <input type="text" required = "true" class="form-control mx-sm-3" name="nom" aria-describedby="Nom du restaurant" placeholder="Nom">
+            </div>
+
+            <div class="col-xs-5">
+                <label for="type_cuisine" class="mx-sm-3">Type de cuisine du restaurant :</label>
+                <input type="text" required = "true" class="form-control mx-sm-3 col-xs-4" name="type_cuisine"  aria-describedby="Type de cuisine du restaurant" placeholder="Type de cuisine du restaurant">
+            </div>
+            <div class="col-xs-5">
+                <label for="adresse" class="mx-sm-3">Adresse du restaurant :</label>
+                <input type="text" required = "true" class="form-control mx-sm-3 col-xs-4"  name="adresse" aria-describedby="Adresse du restaurant" placeholder="Adresse du restaurant">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mx-sm-3">Valider</button>
+    </form>
+</div>
+{/body}
+{/include}
+
