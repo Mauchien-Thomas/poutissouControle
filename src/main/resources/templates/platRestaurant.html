@@ -1,0 +1,38 @@
+{#include base}
+{#body}
+
+  <div>
+    {#if plats.size == 0}
+      il n'y a pas de plat renseigné pour ce restaurant
+  </div>
+   {#else}
+     <div class="text-center">
+       {#for plat in plats}
+         <h1>{plat.restaurant.nom}</h1>
+         <p>{plat.restaurant.adresse}</p>
+         <p>{plat.restaurant.type_cuisine}</p>
+       {/for}
+     </div>
+
+  <table id="liste_plat" class="table table-condensend">
+  <thead>
+  <tr>
+    <th scope="col">Nom</th>
+    <th scope="col">prix</th>
+    <th scope="col">type de plat</th>
+  </tr>
+  </thead>
+  {#for plat in plats}
+    <tbody>
+    <tr>
+    <td>{plat.nom}</td>
+    <td>{plat.prix}</td>
+    <td>{plat.type_plat.type_plat}</td>
+  </tr>
+    </tbody>
+  {/for}
+  </table>
+
+    {/if}
+{/body}
+{/include}

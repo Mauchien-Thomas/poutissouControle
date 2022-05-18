@@ -3,6 +3,7 @@ package endpoint;
 import io.quarkus.qute.Location;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
+import metier.Plat;
 import metier.Restaurant;
 import ressource.RestaurantRessource;
 
@@ -33,6 +34,7 @@ public class RestaurantEndPoint {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getAll(){
+        //Plat test = new Plat();
         List<Restaurant> restaurant = Restaurant.listAll();
         return restaurantTPL.data("restaurants", restaurant);
     }
@@ -45,6 +47,7 @@ public class RestaurantEndPoint {
                 "DESC", nom);
         return Response.ok(restaurant).build();
     }
+
 
     @GET
     @Path("type/{type_cuisine}")
@@ -66,7 +69,7 @@ public class RestaurantEndPoint {
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Transactional
-    public Response create(@FormParam("nom") String nom, @FormParam("type_cuisine") String typeCuisine, @FormParam("adresse") String adresse){
+    public TemplateInstance create(@FormParam("nom") String nom, @FormParam("type_cuisine") String typeCuisine, @FormParam("adresse") String adresse){
 
         Restaurant restaurant = new Restaurant(nom,typeCuisine,adresse);
 
@@ -76,11 +79,9 @@ public class RestaurantEndPoint {
             restaurant.persist(restaurant);
             if(restaurant.isPersistent()){
                restaurantRessource.addRestaurant(restaurant);
-                restaurantTPL.instance();
-                return Response.created(URI.create("/restaurants"+restaurant.id)).build();
+               return getAll();
             }
         }
-        restaurantTPL.instance();
-        return Response.status(Response.Status.BAD_REQUEST).build();
+        return getAll();
     }
 }

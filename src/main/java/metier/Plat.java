@@ -11,14 +11,67 @@ import java.util.List;
 public class Plat extends PanacheEntityBase implements Serializable {
 
     @Id
-    private Long plat_id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public Long plat_id;
 
-    @OneToMany(mappedBy = "type_plat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<TypePlat> type_plat = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "type_plat_id")
+    public TypePlat type_plat;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    public Restaurant restaurant;
+
+
 
    @Column(name="nom_plat")
-   private String nom;
+   public String nom;
 
    @Column(name="prix_plat")
-   private Long prix;
+   public Long prix;
+
+
+    public Plat() {
+
+    }
+
+    public Long getPlat_id() {
+        return plat_id;
+    }
+
+    public void setPlat_id(Long plat_id) {
+        this.plat_id = plat_id;
+    }
+
+    public TypePlat getType_plat() {
+        return type_plat;
+    }
+
+    public void setType_plat(TypePlat type_plat) {
+        this.type_plat = type_plat;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Long getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Long prix) {
+        this.prix = prix;
+    }
 }

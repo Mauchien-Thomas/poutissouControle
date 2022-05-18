@@ -1,13 +1,18 @@
 package metier;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Restaurant extends PanacheEntity {
+public class Restaurant extends PanacheEntityBase implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public Long restaurant_id;
     @Column(length = 255, nullable = false)
     public String nom;
 
@@ -16,6 +21,11 @@ public class Restaurant extends PanacheEntity {
 
     @Column(length = 255, nullable = false)
     public String adresse;
+/*
+    @OneToMany(targetEntity = Plat.class, mappedBy = "restaurant")
+    public List<Plat> liste_plats = new ArrayList<>();
+
+ */
 
     public Restaurant(String nom, String type_cuisine, String adresse) {
         this.nom = nom;

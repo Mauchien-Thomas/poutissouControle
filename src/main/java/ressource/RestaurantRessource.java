@@ -8,6 +8,8 @@ import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static javax.transaction.Transactional.TxType.REQUIRED;
 @ApplicationScoped
 @Transactional(REQUIRED)
@@ -20,7 +22,9 @@ public class RestaurantRessource {
         return restaurant;
     }
 
-   /*
+
+
+  /*
     public void updateRestaurant(Restaurant restaurant) {
         entityManager.merge(restaurant);
     }

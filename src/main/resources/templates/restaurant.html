@@ -3,17 +3,18 @@
     {#body}
 <h1>Annuaires de restaurants</h1>
 
-<idv>
+<div class="text-center">
     {#if restaurants.size == 0}
         il n'y a pas de restaurant
-    {/if}
-</idv>
+</div>
+ {#else}
 <table id="liste_restaurant" class="table table-condensend">
     <thead>
     <tr>
         <th scope="col">Nom</th>
         <th scope="col">Adresse</th>
         <th scope="col">type de cuisine</th>
+        <th scope="col">consulter carte</th>
     </tr>
     </thead>
     {#for restaurant in restaurants}
@@ -22,9 +23,14 @@
             <td>{restaurant.nom}</td>
             <td>{restaurant.adresse}</td>
             <td>{restaurant.type_cuisine}</td>
+
+            <td><a href="../plats/{restaurant.restaurant_id}" class="btn btn-primary" >Consulter</a></td>
+
+
         </tr>
     </tbody>
     {/for}
 </table>
+{/if}
 {/body}
 {/include}

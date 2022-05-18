@@ -9,10 +9,12 @@ import java.io.Serializable;
 public class TypePlat extends PanacheEntityBase implements Serializable {
 
     @Id
-    private Long type_plat_id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public Long type_plat_id;
 
     @Column(length = 255, nullable = false)
     public String type_plat;
 
-
+    public TypePlat() {
+    }
 }
