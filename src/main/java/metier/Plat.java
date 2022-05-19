@@ -32,7 +32,13 @@ public class Plat extends PanacheEntityBase implements Serializable {
 
 
     public Plat() {
+    }
 
+    public Plat(TypePlat type_plat, Restaurant restaurant, String nom, Long prix) {
+        this.type_plat = type_plat;
+        this.restaurant = restaurant;
+        this.nom = nom;
+        this.prix = prix;
     }
 
     public Long getPlat_id() {

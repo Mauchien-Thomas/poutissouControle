@@ -17,4 +17,8 @@ public class TypePlat extends PanacheEntityBase implements Serializable {
 
     public TypePlat() {
     }
+
+    public TypePlat(Long type_plat_id) {
+        this.type_plat_id = type_plat_id;
+    }
 }

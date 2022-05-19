@@ -1,5 +1,8 @@
 {#include base}
 {#body}
+  <div class="p-3 m-2">
+    <a href="../plats/ajout_plat/{restaurant.restaurant_id}" class="btn btn-primary" >Ajouter un plat</a>
+  </div>
 
   <div>
     {#if plats.size == 0}
@@ -7,27 +10,27 @@
   </div>
    {#else}
      <div class="text-center">
-       {#for plat in plats}
-         <h1>{plat.restaurant.nom}</h1>
-         <p>{plat.restaurant.adresse}</p>
-         <p>{plat.restaurant.type_cuisine}</p>
-       {/for}
+         <h1>{restaurant.nom}</h1>
+         <p>{restaurant.adresse}</p>
+         <p>{restaurant.type_cuisine}</p>
      </div>
-
   <table id="liste_plat" class="table table-condensend">
   <thead>
   <tr>
     <th scope="col">Nom</th>
     <th scope="col">prix</th>
     <th scope="col">type de plat</th>
+    <th scope="col">Supprimer plat</th>
   </tr>
   </thead>
   {#for plat in plats}
     <tbody>
     <tr>
     <td>{plat.nom}</td>
-    <td>{plat.prix}</td>
+    <td>{plat.prix} €</td>
     <td>{plat.type_plat.type_plat}</td>
+      <td><a href="../plats/supprimer/{plat.plat_id}" class="btn btn-primary" >Supprimer</a></td>
+
   </tr>
     </tbody>
   {/for}

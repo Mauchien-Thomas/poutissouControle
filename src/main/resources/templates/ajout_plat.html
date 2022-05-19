@@ -1,0 +1,37 @@
+{#include base}
+{#body}
+  <div class="text-center">
+    <h1>Ajout d'un plat pour le restaurant : </h1>
+  </div>
+  <div class="container">
+      <form id="ajoutPlat" method="POST" action="../creation/envoi">
+        <div class="form-group">
+          <div class="col-xs-5">
+            <label for="nom" class="mx-sm-3">Nom du plat :</label>
+              <input type="text" required class="form-control mx-sm-3" name="nom" aria-describedby="Nom du plat" placeholder="Nom du plat">
+          </div>
+          <div class="col-xs-5">
+            <label for="prix" class="mx-sm-3">Prix du plat :</label>
+            <input type="number" required class="form-control mx-sm-3" name="prix" aria-describedby="prix du plat" placeholder="prix du plat">
+          </div>
+          <div class="col-xs-5 m-0 p-2">
+            <label for="pet-select">Choisir le type du plat : </label>
+
+            <select name="type_plat" id="type-select">
+               {#for type in typePlats}
+              <option value={type.type_plat_id}> {type.type_plat}</option>
+              {/for}
+            </select>
+          </div>
+        <div class="col-xs-5">
+        <input type="text"  class="form-control mx-sm-3" name="id_restaurant" value = {id} hidden>
+        </div>
+      </div>
+        <div class="p-2 m-0">
+          <button type="submit" class="btn btn-primary mx-sm-3">Valider</button>
+          <a href="../restaurants" class="btn btn-primary" >Retour</a>
+        </div>
+  </form>
+  </div>
+{/body}
+{/include}
